@@ -56,8 +56,13 @@ if choice == "3":
     while True:
         pending = host.seePending()
         clear()
+        print("Pending Messages:")
         print(pending)
-        sleep(5)
+
+        for message in pending:
+            host.acceptMessage(message["message_id"])
+
+        sleep(.5)
 
 while True:
     print("""

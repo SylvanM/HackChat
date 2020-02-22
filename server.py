@@ -1,4 +1,5 @@
 import requests
+import json.decoder
 
 url = "https://rhscybersecurity.000webhostapp.com/chat.php"
 
@@ -61,7 +62,6 @@ class ChatServer:
         }
 
         result = requests.get(url = url, params = params)
-        print(result.url)
 
     def seeMessagesToMe(self):
         params = {
@@ -71,7 +71,7 @@ class ChatServer:
         }
 
         results = requests.get(url = url, params = params)
-        return results.json()
+        return json.loads(results)
 
     def seeMessageFromMe(self):
         params = {
@@ -81,7 +81,7 @@ class ChatServer:
         }
 
         results = requests.get(url = url, params = params)
-        return results.json()
+        return json.loads(results)
 
     # admin functions
 
@@ -125,5 +125,5 @@ class ChatServer:
         }
 
         results = requests.get(url = url, params = params)
-        return results.json()
+        return json.loads(results)
 
