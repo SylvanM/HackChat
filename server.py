@@ -70,7 +70,7 @@ class ChatServer:
             "pass"  : self.password
         }
 
-        results = requests.get(url = url, params = params)
+        results = requests.get(url = url, params = params).json()
         return json.loads(results)
 
     def seeMessageFromMe(self):
@@ -80,7 +80,7 @@ class ChatServer:
             "pass"  : self.password
         }
 
-        results = requests.get(url = url, params = params)
+        results = requests.get(url = url, params = params).json()
         return json.loads(results)
 
     # admin functions
@@ -97,8 +97,6 @@ class ChatServer:
         }
 
         results = requests.get(url = url, params = params)
-        print(results.url)
-        print(results.text)
 
     def blockMessage(self, message_id):
         if not self.isAdmin():
@@ -110,9 +108,6 @@ class ChatServer:
             "adpss": self.password,
             "mid" : message_id
         }
-
-        result = requests.post(url = url, params = params)
-        print(result.url)
     
     def seePending(self):
         if not self.isAdmin():

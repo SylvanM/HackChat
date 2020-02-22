@@ -72,22 +72,43 @@ Choose an action:
     2. See messages to you
     3. See messages from you
     4. See pending messages (ADMIN ONLY)
-    5. Accept a message
-    6. Block a message""")
+    5. Accept a message (ADMIN ONLY)
+    6. Block a message (ADMIN ONLY)
+    7. Exit
+    """)
 
     action = input("Enter the number of the action you want to do: ")
     
     if action == "1":
+        clear()
         host.sendMessage(input("TO: "), input("MESSAGE: "))
     elif action == "2":
+        clear()
         print(host.seeMessagesToMe())
     elif action == "3":
+        clear()
         print(host.seeMessageFromMe())
     elif action == "4":
+        if not host.isAdmin():
+            clear()
+            print("You are not an administrator!")
+            continue
+
         print(host.seePending())
     elif action == "5":
+        if not host.isAdmin():
+            clear()
+            print("You are not an administrator!")
+            continue
         host.acceptMessage(input("Enter message ID: "))
     elif action == "6":
+        if not host.isAdmin():
+            clear()
+            print("You are not an administrator!")
+            continue
         host.blockMessage(input("Enter message ID: "))
+    else:
+        exit()
+
 
 
