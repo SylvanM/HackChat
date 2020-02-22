@@ -42,7 +42,7 @@
  [],
  False,
  False,
- 1582342548,
+ 1582380215,
  [('run',
    '/Users/sylvanm/Library/Python/3.7/lib/python/site-packages/PyInstaller/bootloader/Darwin-64bit/run',
    'EXECUTABLE')])
