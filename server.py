@@ -124,6 +124,6 @@ class ChatServer:
             "adpss": self.password
         }
 
-        results = requests.get(url = url, params = params)
+        results = requests.get(url = url, params = params).json()
         return json.loads(results)
 
