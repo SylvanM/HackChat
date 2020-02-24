@@ -70,8 +70,9 @@ class ChatServer:
             "pass"  : self.password
         }
 
-        results = requests.get(url = url, params = params).json()
-        return json.loads(results)
+        results = requests.get(url = url, params = params)
+        print(results.url)
+        return json.loads(results.json())
 
     def seeMessageFromMe(self):
         params = {
@@ -90,7 +91,7 @@ class ChatServer:
             return False
 
         params = {
-            "f": "acptmsg",
+            "f": "",
             "adusr": self.username,
             "adpss": self.password,
             "mid" : message_id

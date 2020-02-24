@@ -64,6 +64,8 @@ if choice == "3":
 
         sleep(.5)
 
+clear()
+
 while True:
     print("""
 Choose an action:
@@ -83,11 +85,24 @@ Choose an action:
         clear()
         host.sendMessage(input("TO: "), input("MESSAGE: "))
     elif action == "2":
-        clear()
-        print(host.seeMessagesToMe())
+        messages = host.seeMessageFromMe()
+        for i in range(0, len(messages)):
+            print(f"""
+----------------------------------------------
+FROM: {messages[i]['from_user']}
+
+{messages[i]['message']}
+            """)
     elif action == "3":
         clear()
-        print(host.seeMessageFromMe())
+        messages = host.seeMessageFromMe()
+        for i in range(0, len(messages)):
+            print(f"""
+----------------------------------------------
+TO: {messages[i]['to_user']}
+
+{messages[i]['message']}
+            """)
     elif action == "4":
         if not host.isAdmin():
             clear()
