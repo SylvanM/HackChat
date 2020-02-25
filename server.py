@@ -39,7 +39,7 @@ class ChatServer:
         }
 
         result = requests.get(url = url, params = params)
-        return result
+        return result.json()
 
     # delete my account
     def deleteAccount(self):
@@ -61,7 +61,10 @@ class ChatServer:
             "to"    : to_user
         }
 
+        
+
         result = requests.get(url = url, params = params)
+        print(result.url)
 
     def seeMessagesToMe(self):
         params = {
@@ -81,8 +84,9 @@ class ChatServer:
             "pass"  : self.password
         }
 
-        results = requests.get(url = url, params = params).json()
-        return json.loads(results)
+        results = requests.get(url = url, params = params)
+        print(results.url)
+        return json.loads(results.json())
 
     # admin functions
 
@@ -91,13 +95,14 @@ class ChatServer:
             return False
 
         params = {
-            "f": "",
+            "f": "acptmsg",
             "adusr": self.username,
             "adpss": self.password,
             "mid" : message_id
         }
 
         results = requests.get(url = url, params = params)
+        print(results.url)
 
     def blockMessage(self, message_id):
         if not self.isAdmin():

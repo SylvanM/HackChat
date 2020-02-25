@@ -5,6 +5,8 @@ from os import system, name
   
 # import sleep to show output for some time period 
 from time import sleep 
+
+import time
   
 # define our clear function 
 def clear(): 
@@ -85,23 +87,21 @@ Choose an action:
         clear()
         host.sendMessage(input("TO: "), input("MESSAGE: "))
     elif action == "2":
-        messages = host.seeMessageFromMe()
+        messages = host.seeMessagesToMe()
         for i in range(0, len(messages)):
             print(f"""
-----------------------------------------------
-FROM: {messages[i]['from_user']}
-
+---> FROM: {messages[i]['from_user']} on {time.strftime('%A, %Y-%m-%d %H:%M:%S', time.localtime(int(messages[i]['timestamp'])))}
 {messages[i]['message']}
+---> END OF MESSAGE
             """)
     elif action == "3":
         clear()
         messages = host.seeMessageFromMe()
         for i in range(0, len(messages)):
             print(f"""
-----------------------------------------------
-TO: {messages[i]['to_user']}
-
+---> FROM: {messages[i]['to_user']} on {time.strftime('%A, %Y-%m-%d %H:%M:%S', time.localtime(int(messages[i]['timestamp'])))}
 {messages[i]['message']}
+---> END OF MESSAGE
             """)
     elif action == "4":
         if not host.isAdmin():
@@ -122,8 +122,10 @@ TO: {messages[i]['to_user']}
             print("You are not an administrator!")
             continue
         host.blockMessage(input("Enter message ID: "))
-    else:
+    elif action == "7":
         exit()
-
+    else: 
+        clear()
+        print("Invalid input, please enter a choice 1-7")
 
 
