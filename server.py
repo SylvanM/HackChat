@@ -8,7 +8,7 @@ def createAccount(username, password):
     params = { 
         "f" : "cusr",
         "user" : username,
-        "pass" : username
+        "pass" : password
     }
 
     requests.get(url = url, params = params)
@@ -18,11 +18,13 @@ def checkAccount(username, password):
     params = { 
         "f" : "v",
         "user" : username,
-        "pass" : username
+        "pass" : password
     }
 
-    result = requests.get(url = url, params = params).text
-    return result
+    result = requests.get(url = url, params = params)
+    print(result.url)
+    print(result.text)
+    return result.text == "true"
 
 class ChatServer:
 
