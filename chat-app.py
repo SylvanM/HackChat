@@ -104,21 +104,23 @@ Choose an action:
 ---> END OF MESSAGE
             """)
     elif action == "4":
+        
+        clear()
         if not host.isAdmin():
-            clear()
+            
             print("You are not an administrator!")
             continue
 
         print(host.seePending())
     elif action == "5":
+        clear()
         if not host.isAdmin():
-            clear()
             print("You are not an administrator!")
             continue
         host.acceptMessage(input("Enter message ID: "))
     elif action == "6":
+        clear()
         if not host.isAdmin():
-            clear()
             print("You are not an administrator!")
             continue
         host.blockMessage(input("Enter message ID: "))

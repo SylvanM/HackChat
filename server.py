@@ -1,7 +1,7 @@
 import requests
 import json.decoder
 
-url = "https://rhscybersecurity.000webhostapp.com/chat.php"
+url = "https://rhscybersecuritybackup.000webhostapp.com/chat.php"
 
 
 def createAccount(username, password):
@@ -11,7 +11,9 @@ def createAccount(username, password):
         "pass" : password
     }
 
-    requests.get(url = url, params = params)
+    
+    response = requests.get(url = url, params = params)
+    print(response.url)
 
 
 def checkAccount(username, password):
@@ -41,6 +43,7 @@ class ChatServer:
         }
 
         result = requests.get(url = url, params = params)
+        print(result.url)
         return result.json()
 
     # delete my account
@@ -51,7 +54,7 @@ class ChatServer:
             "pass" : self.password
         }
 
-        requests.get(url = url, params = params)
+        response = requests.get(url = url, params = params)
 
     # send a message to another user
     def sendMessage(self, to_user, message):
@@ -62,8 +65,6 @@ class ChatServer:
             "msg"   : message,
             "to"    : to_user
         }
-
-        
 
         result = requests.get(url = url, params = params)
         print(result.url)
@@ -116,6 +117,9 @@ class ChatServer:
             "adpss": self.password,
             "mid" : message_id
         }
+
+        response = requests.get(url = url, params = params)
+        print(response.url)
     
     def seePending(self):
         if not self.isAdmin():
@@ -127,6 +131,7 @@ class ChatServer:
             "adpss": self.password
         }
 
-        results = requests.get(url = url, params = params).json()
-        return json.loads(results)
+        results = requests.get(url = url, params = params)
+        print(results.url)
+        return json.loads(results.json())
 
